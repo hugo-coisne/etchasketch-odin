@@ -5,13 +5,16 @@ let big = document.createElement("div");
 let size = 16;
 
 
-function grid(n){
+function grid(n) {
     for (let i = 0; i < n; i++) {
         const small = document.createElement('div');
         small.classList = "column";
         for (let j = 0; j < n; j++) {
             const tiny = document.createElement("div");
             tiny.classList = "square";
+            tiny.addEventListener('mouseover', function (e) {
+                this.classList.add("black");
+            })
             small.appendChild(tiny);
         }
         big.appendChild(small);
@@ -19,9 +22,8 @@ function grid(n){
 }
 
 
-
 function setGrid(n) {
-    big.innerHTML =""; 
+    big.innerHTML = "";
     console.log(big.children);
     if (n <= 100 && n >= 0) {
         grid(n);
@@ -39,7 +41,6 @@ button.addEventListener('click', () => {
     console.log(big.children);
     setGrid(prompt("Please choose a grid size between 0 and 100"));
 });
-
 body.appendChild(button);
 
 setGrid(size);
